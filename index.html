@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pencari Lokasi Stok & Denah Rak</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header / Judul Aplikasi -->
+    <header class="app-header">
+        <h1>Sistem Pencari Lokasi Barang</h1>
+        <p>Cari nama barang untuk melihat posisi rak di denah toko/gudang.</p>
+    </header>
+
+    <main class="container">
+        
+        <!-- Bagian Formulir Pencarian dan Tambah Barang -->
+        <section class="control-panel card">
+            <h2>Pencarian Cepat</h2>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Ketik nama barang atau kode SKU..." autocomplete="off">
+                <button id="resetBtn" class="btn btn-secondary">Reset / Tampilkan Semua</button>
+            </div>
+
+            <!-- Formulir Tambah/Edit Barang Sederhana -->
+            <details class="add-form-container">
+                <summary>+ Tambah / Perbarui Lokasi Barang</summary>
+                <form id="addItemForm" class="add-form">
+                    <input type="text" id="inputKode" placeholder="Kode Barang (misal: B005)" required>
+                    <input type="text" id="inputNama" placeholder="Nama Barang" required>
+                    <select id="selectRak" required>
+                        <option value="">-- Pilih Lokasi Rak --</option>
+                        <option value="Rak-A1">Rak A1 (Depan Kirim)</option>
+                        <option value="Rak-A2">Rak A2 (Depan Kanan)</option>
+                        <option value="Rak-B1">Rak B1 (Tengah Kiri)</option>
+                        <option value="Rak-B2">Rak B2 (Tengah Kanan)</option>
+                        <option value="Rak-C1">Rak C1 (Belakang Kiri)</option>
+                        <option value="Rak-C2">Rak C2 (Belakang Kanan)</option>
+                    </select>
+                    <input type="number" id="inputStok" placeholder="Jumlah Stok" min="0" required>
+                    <button type="submit" class="btn btn-primary">Simpan Barang</button>
+                </form>
+            </details>
+        </section>
+
+        <!-- Layout 2 Kolom: Denah Rak dan Daftar Hasil -->
+        <div class="main-layout">
+            
+            <!-- Denah Visual Toko / Gudang -->
+            <section class="visual-map card">
+                <h2>Denah Lokasi Rak</h2>
+                <div class="map-grid">
+                    <div class="shelf-box" id="Rak-A1">
+                        <span class="shelf-title">Rak A1</span>
+                        <span class="shelf-desc">Depan Kiri</span>
+                    </div>
+                    <div class="shelf-box" id="Rak-A2">
+                        <span class="shelf-title">Rak A2</span>
+                        <span class="shelf-desc">Depan Kanan</span>
+                    </div>
+                    <div class="shelf-box" id="Rak-B1">
+                        <span class="shelf-title">Rak B1</span>
+                        <span class="shelf-desc">Tengah Kiri</span>
+                    </div>
+                    <div class="shelf-box" id="Rak-B2">
+                        <span class="shelf-title">Rak B2</span>
+                        <span class="shelf-desc">Tengah Kanan</span>
+                    </div>
+                    <div class="shelf-box" id="Rak-C1">
+                        <span class="shelf-title">Rak C1</span>
+                        <span class="shelf-desc">Belakang Kiri</span>
+                    </div>
+                    <div class="shelf-box" id="Rak-C2">
+                        <span class="shelf-title">Rak C2</span>
+                        <span class="shelf-desc">Belakang Kanan</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tabel / Daftar Informasi Barang -->
+            <section class="item-list card">
+                <h2>Daftar Barang (<span id="totalItems">0</span>)</h2>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Kode</th>
+                                <th>Nama Barang</th>
+                                <th>Lokasi</th>
+                                <th>Stok</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inventoryTableBody">
+                            <!-- Data akan dimuat secara dinamis oleh JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
